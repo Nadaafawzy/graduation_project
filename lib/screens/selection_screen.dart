@@ -24,7 +24,7 @@ class SelectionScreen extends StatelessWidget {
       
       
             Text(
-              "Continue As",
+              "Sign As",
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
       

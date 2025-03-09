@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 import '../../widget/custom_button.dart';
 import '../../widget/custom_text_form_field.dart';
 import 'login_screen.dart';
@@ -49,7 +50,11 @@ class _SignupScreenState extends State<SignupScreen> {
                   Positioned(
                     top: 40,
                     left: 20,
-                    child: Icon(Icons.arrow_back, color: Colors.black, size: 28),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                        child: Icon(Icons.arrow_back, color: Colors.black, size: 28)),
                   ),
                 ],
               ),
@@ -131,16 +136,19 @@ class _SignupScreenState extends State<SignupScreen> {
 
                       SizedBox(height: 15),
 
-                      // Password Field
-                      CustomTextField(
-                        label: "Phone Number",
-                        controller: phoneController,
-                        isPassword: false,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return "Please enter your phone";
-                          }
-                          return null;
+                      IntlPhoneField(
+                        decoration: InputDecoration(
+                          labelText: 'Phone Number',
+                          filled: true,
+                          fillColor: Colors.grey[200],
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                        initialCountryCode: 'EG',
+                        onChanged: (phone) {
+                          print(phone.completeNumber);
                         },
                       ),
 

@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:graduation_project/screens/patient/home_screen.dart';
@@ -34,7 +35,13 @@ class LoginScreen extends StatelessWidget {
                   Positioned(
                     top: 40,
                     left: 20,
-                    child: Icon(Icons.arrow_back, color: Colors.black, size: 28),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Icon(Icons.arrow_back,
+                        color: Colors.black, size: 28),
+                    ),
                   ),
                 ],
               ),
@@ -111,9 +118,22 @@ class LoginScreen extends StatelessWidget {
                               Text("Remember me"),
                             ],
                           ),
-                          Text(
-                            "forget?",
-                            style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                          InkWell(
+                            onTap: (){
+                              AwesomeDialog(
+                                  context: context,
+                                  dialogType: DialogType.error,
+                                  animType: AnimType.topSlide,
+                                  title: 'Error',
+                                  desc: 'Please go to your email to reset your password',
+                                  btnCancelOnPress: () {},
+                                  btnOkOnPress: () {},
+                              ).show();
+                            },
+                            child: Text(
+                              "forget?",
+                              style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                            ),
                           ),
                         ],
                       ),
